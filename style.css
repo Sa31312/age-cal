@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,800&display=swap');
+:root{
+	--Purple: hsl(259, 100%, 65%);
+	--Lightred: hsl(0, 100%, 67%);
+	--White: hsl(0, 0%, 100%);
+	--Offwhite: hsl(0, 0%, 94%);
+	--Lightgrey: hsl(0, 0%, 86%);
+	--Smokeygrey: hsl(0, 1%, 44%);
+	--Offblack: hsl(0, 0%, 8%);
+}
+body{
+	background-color: var(--Smokeygrey);
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Poppins', sans-serif;
+	box-sizing: border-box;
+	 display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.form-container {
+    width: 100%;
+    border-radius: 10px 10px 77px 10px;
+    padding: 30px;
+    background-color: var(--White);
+    max-width: 500px;
+}
+.inner-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+.input-container label {
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--Smokeygrey);
+}
+.input-container input {
+    outline: none;
+    width: 100%;
+    max-width: 100px;
+    margin: 10px 0px;
+    padding: 10px 30px 10px 10px;
+    font-size: 24px;
+    border-radius: 7px;
+    border: 1px solid var(--Smokeygrey);
+}
+button.btn-submit {    
+	position: absolute;
+    background-color: var(--Purple);
+    float: right;
+    clear: both;
+    margin-right: 19px;
+    outline: none;
+    border: none;
+    border-radius: 100px;
+    padding: 10px;
+    top: -26px;
+    right: 0px;
+}
+button.btn-submit img {
+    width: 29px;
+    height: 25px;
+}
+.button-test hr {
+    width: 100%;
+    max-width: 93%;
+    margin-left: 5px;
+}
+.button-test hr {
+    width: 100%;
+    max-width: 93%;
+    margin-left: 5px;
+}
+.button-test {
+    margin: 25px 0px;
+    position: relative;
+}
+.years {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+.years p,span.years-1 {
+	margin: 0px;
+    font-style: italic;
+    font-size: 60px;
+    font-weight: bold;
+}
+span.years-1{
+	color: var(--Purple);
+}

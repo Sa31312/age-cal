@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Age calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+
+
+ <div class="form-container">
+   <form class="age-cal">
+     <div class="inner-container">
+       <div class="input-container">
+         <label for="day">Day</label>
+         <input type="text" class="day" placeholder="DD" id="day">
+       </div>
+       <div class="input-container">
+         <label for="month">Month</label>
+         <input type="text" class="month" placeholder="MM" id="month">
+       </div>
+       <div class="input-container">
+         <label for="year">Year</label>
+         <input type="text" class="year" placeholder="YYYY" id="year">
+       </div>
+     </div>
+     <div class="button-test">
+       <hr>
+       <button class="btn-submit">
+         <img src="./assets/images/icon-arrow.svg">
+       </button>
+     </div>
+   </form>
+   <div class="to-show-txt">
+     <div class="years">
+       <span id="year-to-show" class="years-1">--</span>
+       <p>years</p>
+     </div>
+     <div class="years">
+       <span id="month-to-show" class="years-1">--</span>
+       <p>months</p>
+     </div>
+     <div class="years">
+       <span id="day-to-show" class="years-1">--</span>
+       <p>days</p>
+     </div>
+   </div>
+ </div>
+ <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+ <script>
+  jQuery(document).ready(function () {
+    jQuery('.btn-submit').on('click', function (e) {
+      e.preventDefault();
+
+      // Get input values
+      var day = parseInt(jQuery('#day').val());
+      var month = parseInt(jQuery('#month').val());
+      var year = parseInt(jQuery('#year').val());
+
+      // Validate inputs
+      if (isNaN(day) || isNaN(month) || isNaN(year)) {
+        
+        alert('Please enter valid values for day, month, and year.');
+        return;
+      }
+
+      if (month < 1 || month > 12) {
+        alert('Month should be between 1 and 12.');
+        return;
+      }
+
+      var lastDayInMonth = new Date(year, month, 0).getDate();
+
+      // Check if the entered day is valid for the given month
+      if (day < 1 || day > lastDayInMonth) {
+        alert('Please enter a valid day for the selected month.');
+        return;
+      }
+
+      var currentDate = new Date();
+      var inputDate = new Date(year, month - 1, day); // Note: Month is 0-indexed in JavaScript
+
+      // Check if the input date is in the future
+      if (inputDate > currentDate) {
+        alert('Please enter a valid date in the past.');
+        return;
+      }
+
+      // Calculate age
+      var ageInMilliseconds = currentDate - inputDate;
+      var ageDate = new Date(ageInMilliseconds);
+      var ageInYears = ageDate.getUTCFullYear() - 1970;
+      var ageInMonths = ageDate.getUTCMonth();
+      var ageInDays = ageDate.getUTCDate() - 1;
+
+      // Display age
+      jQuery('#year-to-show').text(ageInYears);
+      jQuery('#month-to-show').text(ageInMonths);
+      jQuery('#day-to-show').text(ageInDays);
+
+      // Reset error messages
+      jQuery('#month-to-show, #day-to-show').removeClass('error');
+
+      // Check if the calculated age is accurate
+      var calculatedDate = new Date(currentDate.getFullYear() - ageInYears, month - 1, day);
+      if (
+        calculatedDate.getMonth() !== month - 1 ||
+        calculatedDate.getDate() !== day ||
+        calculatedDate.getFullYear() !== year
+      ) {
+        alert('Invalid date. Please enter a valid date.');
+        jQuery('#month-to-show, #day-to-show').addClass('error');
+      }
+    });
+  });
+
+ </script>
+
+
+
+<!-- 
+  Day
+  DD
+
+  Month
+  MM
+
+  Year
+  YYYY
+
+  -- years
+  -- months
+  -- days
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+</body>
+</html>
